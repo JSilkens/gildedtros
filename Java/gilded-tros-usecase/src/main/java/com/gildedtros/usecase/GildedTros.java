@@ -1,7 +1,9 @@
-package com.gildedtros;
+package com.gildedtros.usecase;
 
-class GildedTros {
-    Item[] items;
+import com.gildedtros.domain.Item;
+
+public class GildedTros {
+    public Item[] items;
 
     public GildedTros(Item[] items) {
         this.items = items;
