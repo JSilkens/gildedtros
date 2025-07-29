@@ -1,4 +1,7 @@
-package com.gildedtros;
+package com.gildedtros.app;
+
+import com.gildedtros.domain.Item;
+import com.gildedtros.usecase.GildedTros;
 
 public class TexttestFixture {
     public static void main(String[] args) {
@@ -20,7 +23,7 @@ public class TexttestFixture {
 
         GildedTros app = new GildedTros(items);
 
-        int days = 2;
+        int days = 5;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }
