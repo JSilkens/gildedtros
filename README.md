@@ -9,4 +9,4 @@ The simplest way is to just clone the code and start hacking away improving the 
 Instructions can be found in the GildedTrosRequirements document.
 
 
-Have fun and good luck!
+Have fun and good luck!# gildedtros
