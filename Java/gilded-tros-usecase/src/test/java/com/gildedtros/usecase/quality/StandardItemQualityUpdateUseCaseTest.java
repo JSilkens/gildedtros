@@ -12,7 +12,7 @@ class StandardItemQualityUpdateUseCaseTest {
 
     @Test
     @DisplayName("Given an item with positive quality before sell-in date, when invoke is called, then reduce quality by 1 and sellIn by 1")
-    void givenItemWithPositiveQualityBeforeSellInDate_whenInvoke_thenReduceQualityAndSellInBy1() {
+    void givenItemWithPositiveQualityBeforeSellInDate_whenInvoke_thenReduceQualityAndSellInByOne() {
         // GIVEN
         Item item = new Item("Standard Item", 10, 20);
 
@@ -26,7 +26,7 @@ class StandardItemQualityUpdateUseCaseTest {
 
     @Test
     @DisplayName("Given an item with positive quality after sell-in date, when invoke is called, then reduce quality by 2 and sellIn by 1")
-    void givenItemWithPositiveQualityAfterSellInDate_whenInvoke_thenReduceQualityBy2AndSellInBy1() {
+    void givenItemWithPositiveQualityAfterSellInDate_whenInvoke_thenReduceQualityBy2AndSellInByOne() {
         // GIVEN
         Item item = new Item("Standard Item", 0, 20);
 
@@ -40,7 +40,7 @@ class StandardItemQualityUpdateUseCaseTest {
 
     @Test
     @DisplayName("Given an item with zero quality, when invoke is called, then quality remains 0 but sellIn reduces by 1")
-    void givenItemWithZeroQuality_whenInvoke_thenQualityRemainsZeroAndSellInReducesBy1() {
+    void givenItemWithZeroQuality_whenInvoke_thenQualityRemainsZeroAndSellInReducesByOne() {
         // GIVEN
         Item item = new Item("Standard Item", 10, 0);
 
@@ -54,7 +54,7 @@ class StandardItemQualityUpdateUseCaseTest {
 
     @Test
     @DisplayName("Given an item after sell-in date with zero quality, when invoke is called, then quality remains 0 and sellIn reduces by 1")
-    void givenItemAfterSellInDateWithZeroQuality_whenInvoke_thenQualityRemainsZeroAndSellInReducesBy1() {
+    void givenItemAfterSellInDateWithZeroQuality_whenInvoke_thenQualityRemainsZeroAndSellInReducesByOne() {
         // GIVEN
         Item item = new Item("Standard Item", -1, 0);
 
@@ -68,7 +68,7 @@ class StandardItemQualityUpdateUseCaseTest {
 
     @Test
     @DisplayName("Given an item with a SellIn value of 0, when a day passes, it should decrease quality by 2")
-    void givenItemWithSellInZero_whenDayPasses_thenDecreaseQualityBy2() {
+    void givenItemWithSellInZero_whenDayPasses_thenDecreaseQualityByOne() {
         // GIVEN
         Item item = new Item("Standard Item", 0, 10);
 
