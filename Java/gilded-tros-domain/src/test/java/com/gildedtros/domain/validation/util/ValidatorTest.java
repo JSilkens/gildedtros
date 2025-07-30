@@ -2,11 +2,11 @@ package com.gildedtros.domain.validation.util;
 
 import com.gildedtros.domain.Item;
 import com.gildedtros.domain.validation.rules.QualityValidationRule;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidatorTest {
 
@@ -39,6 +39,7 @@ class ValidatorTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("No validation rules have been added");
     }
+
     @Test
     @DisplayName("Given an validator with null as rule, when validation is called, then throw exception")
     void givenValidatorWithNullRule_whenValidationCalled_thenThrowException() {

@@ -1,13 +1,12 @@
 package com.gildedtros.domain.factory;
 
 import com.gildedtros.domain.Item;
-import com.gildedtros.domain.ItemType;
 import com.gildedtros.domain.validation.util.Outcome;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ItemFactoryTest {
 

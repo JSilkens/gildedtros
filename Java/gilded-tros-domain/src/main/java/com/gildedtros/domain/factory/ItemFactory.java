@@ -1,7 +1,6 @@
 package com.gildedtros.domain.factory;
 
 import com.gildedtros.domain.Item;
-import com.gildedtros.domain.ItemType;
 import com.gildedtros.domain.validation.rules.QualityValidationRule;
 import com.gildedtros.domain.validation.util.Outcome;
 import com.gildedtros.domain.validation.util.Validator;

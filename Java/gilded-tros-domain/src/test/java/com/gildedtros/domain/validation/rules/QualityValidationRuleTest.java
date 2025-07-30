@@ -1,7 +1,6 @@
 package com.gildedtros.domain.validation.rules;
 
 import com.gildedtros.domain.Item;
-import com.gildedtros.domain.validation.rules.QualityValidationRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

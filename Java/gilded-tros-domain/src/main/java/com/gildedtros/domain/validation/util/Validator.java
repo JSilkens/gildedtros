@@ -31,7 +31,7 @@ public class Validator {
                 .collect(Collectors.toList());
 
        if (errors.isEmpty()) {
-           return new Outcome.Success(item);
+           return new Outcome.Success<>(item);
        }else{
            return new Outcome.Failure<>(String.join(", ", errors));
        }
