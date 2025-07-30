@@ -1,8 +1,6 @@
 package com.gildedtros.domain.factory;
 
-import com.gildedtros.domain.Item;
-import com.gildedtros.domain.LegendaryItem;
-import com.gildedtros.domain.SmellyItem;
+import com.gildedtros.domain.*;
 import com.gildedtros.domain.validation.rules.QualityValidationRule;
 import com.gildedtros.domain.validation.util.Outcome;
 import com.gildedtros.domain.validation.util.Validator;
@@ -32,5 +30,21 @@ public class ItemFactory {
         LegendaryItem legendaryItem = new LegendaryItem(name, sellIn);
 
         return new Outcome.Success<>(legendaryItem);
+    }
+
+    public static Outcome<Item> createBackstagePass(String name, Integer sellIn, Integer quality) {
+        BackstagePass backstagePassItem = new BackstagePass(name, sellIn, quality);
+
+        return new Validator()
+                .addRule(new QualityValidationRule())
+                .validate(backstagePassItem);
+    }
+
+    public static Outcome<Item> createGoodWine(String name, Integer sellIn, Integer quality) {
+        GoodWine goodWine = new GoodWine(name, sellIn, quality);
+
+        return new Validator()
+                .addRule(new QualityValidationRule())
+                .validate(goodWine);
     }
 }
