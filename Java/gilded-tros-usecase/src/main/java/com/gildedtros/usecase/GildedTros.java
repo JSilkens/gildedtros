@@ -1,8 +1,18 @@
 package com.gildedtros.usecase;
 
-import com.gildedtros.domain.Item;
+import com.gildedtros.domain.*;
+import com.gildedtros.usecase.quality.*;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class GildedTros {
+    private final BackstagePassUpdateQualityUseCase backstagePassUpdateQualityUseCase = new BackstagePassUpdateQualityUseCase();
+    private final GoodWineQualityUpdateUseCase goodWineQualityUpdateUseCase = new GoodWineQualityUpdateUseCase();
+    private final LegendaryItemQualityUpdateUseCase legendaryItemUpdateQualityUseCase = new LegendaryItemQualityUpdateUseCase();
+    private final SmellyItemQualityUpdateUseCase smellyItemQualityUpdateUseCase = new SmellyItemQualityUpdateUseCase();
+    private final StandardItemQualityUpdateUseCase standardItemQualityUpdateUseCase = new StandardItemQualityUpdateUseCase();
+
+
     public Item[] items;
 
     public GildedTros(Item[] items) {
@@ -10,57 +20,15 @@ public class GildedTros {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Good Wine")
-                    && !items[i].name.equals("Backstage passes for Re:Factor")
-                    && !items[i].name.equals("Backstage passes for HAXX"))
-            {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("B-DAWG Keychain")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].name.equals("Backstage passes for Re:Factor") || items[i].name.equals("Backstage passes for HAXX") ) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!items[i].name.equals("B-DAWG Keychain")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
-
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Good Wine")) {
-                    if (!items[i].name.equals("Backstage passes for Re:Factor") && !items[i].name.equals("Backstage passes for HAXX")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("B-DAWG Keychain")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
+        for (Item item : items) {
+            QualityUpdateUseCase qualityUpdateUseCase = switch (item) {
+                case BackstagePass b -> backstagePassUpdateQualityUseCase;
+                case GoodWine w -> goodWineQualityUpdateUseCase;
+                case LegendaryItem l -> legendaryItemUpdateQualityUseCase;
+                case SmellyItem s -> smellyItemQualityUpdateUseCase;
+                default -> standardItemQualityUpdateUseCase;
+            };
+            qualityUpdateUseCase.invoke(item);
         }
     }
 }
