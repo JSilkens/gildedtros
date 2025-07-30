@@ -1,6 +1,7 @@
 package com.gildedtros.domain.factory;
 
 import com.gildedtros.domain.Item;
+import com.gildedtros.domain.LegendaryItem;
 import com.gildedtros.domain.SmellyItem;
 import com.gildedtros.domain.validation.rules.QualityValidationRule;
 import com.gildedtros.domain.validation.util.Outcome;
@@ -25,5 +26,11 @@ public class ItemFactory {
         return new Validator()
                 .addRule(new QualityValidationRule())
                 .validate(smellyItem);
+    }
+
+    public static Outcome<Item> createLegendaryItem(String name, Integer sellIn) {
+        LegendaryItem legendaryItem = new LegendaryItem(name, sellIn);
+
+        return new Outcome.Success<>(legendaryItem);
     }
 }

@@ -1,6 +1,7 @@
 package com.gildedtros.domain.factory;
 
 import com.gildedtros.domain.Item;
+import com.gildedtros.domain.LegendaryItem;
 import com.gildedtros.domain.SmellyItem;
 import com.gildedtros.domain.validation.util.Outcome;
 import org.assertj.core.api.Assertions;
@@ -105,6 +106,41 @@ class ItemFactoryTest {
                 .isInstanceOf(Outcome.Failure.class)
                 .extracting(failure -> ((Outcome.Failure<Item>) failure).getMessage())
                 .isEqualTo("Quality must be between 0 and 50. Provided quality: -1");
+    }
+
+    @Test
+    @DisplayName("Given a legendary item, when createLegendaryItem is called, then it should return the legendary item")
+    void givenLegendaryItem_whenCreateLegendaryItem_thenReturnLegendaryItem() {
+        // GIVEN
+        LegendaryItem expectedItem = new LegendaryItem("LegendaryItem", 10);
+
+        // WHEN
+        Outcome<Item> actualItem = ItemFactory.createLegendaryItem("LegendaryItem", 10);
+
+        // THEN
+        Assertions.assertThat(actualItem)
+                .isInstanceOf(Outcome.Success.class)
+                .satisfies(itemOutcome -> itemOutcome.toOptional()
+                        .ifPresent(item -> {
+                            assertEquals(expectedItem.name, item.name);
+                            assertEquals(80, item.quality); // Assuming legendary items have fixed quality of 80
+                            assertEquals(expectedItem.sellIn, item.sellIn);
+                        }));
+    }
+
+    @Test
+    @DisplayName("Given a legendary item with any sellIn value, when createLegendaryItem is called, then quality should be 80")
+    void givenLegendaryItemWithAnySellIn_whenCreateLegendaryItem_thenQualityIsEighty() {
+        // GIVEN & WHEN
+        Outcome<Item> actualItem = ItemFactory.createLegendaryItem("LegendaryItem", 5);
+
+        // THEN
+        Assertions.assertThat(actualItem)
+                .isInstanceOf(Outcome.Success.class)
+                .satisfies(itemOutcome -> itemOutcome.toOptional()
+                        .ifPresent(item -> {
+                            assertEquals(80, item.quality); // Legendary items always have a quality of 80
+                        }));
     }
 
 }
